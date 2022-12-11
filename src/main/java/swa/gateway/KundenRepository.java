@@ -73,15 +73,24 @@ public class KundenRepository implements KundenService {
 
     @Override
     public Adresse updateAddress(int customerId, Adresse address) {
-        // TODO: bei Update wird einfach alte Datein ignorieret.
         Kunde customer = em.find(Kunde.class, customerId);
         if (customer != null) {
-            customer.setAddress(address);
-            em.merge(address);
+            Adresse tempAdresse = customer.getAddress();
+            if (tempAdresse != null) {
+                if (address.getZip() != null)
+                    tempAdresse.setZip(address.getZip());
+                if (address.getCity() != null)
+                    tempAdresse.setCity(address.getCity());
+                if (address.getStreet() != null)
+                    tempAdresse.setStreet(address.getStreet());
+                if (address.getHouseNumber() != null)
+                    tempAdresse.setHouseNumber(address.getHouseNumber());
+                em.merge(tempAdresse);
+                return tempAdresse;
+            }
             return address;
-        } else {
-            return null;
         }
+        return null;
     }
 
     @Override

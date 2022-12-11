@@ -67,4 +67,9 @@ public class Kunde {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Kunde [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + "]";
+    }
+
 }
