@@ -30,7 +30,7 @@ public class Kunde {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Adresse address;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Bestellung> orders;
 
     public Kunde() {
@@ -79,8 +79,9 @@ public class Kunde {
         return orders;
     }
 
-    public void setOrders(List<Bestellung> orders) {
-        this.orders = orders;
+    public void addOrder(Bestellung order) {
+        if (order != null)
+            this.orders.add(order);
     }
 
 }

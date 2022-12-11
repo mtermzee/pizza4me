@@ -24,7 +24,7 @@ public class Bestellung {
     @GeneratedValue(generator = "pizzaOrderSeq")
     private int id;
     private boolean ordered;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Bestellposten> orderItems;
 
     public Bestellung() {
@@ -52,8 +52,23 @@ public class Bestellung {
         return orderItems;
     }
 
-    public void setOrderItems(List<Bestellposten> orderItems) {
-        this.orderItems = orderItems;
+    public void addOrderItem(Bestellposten orderItem) {
+        if (orderItem != null)
+            this.orderItems.add(orderItem);
+    }
+
+    public Bestellposten searchItemInOrder(int itemId) {
+        for (Bestellposten orderItem : orderItems) {
+            if (orderItem.getId() == itemId) {
+                return orderItem;
+            }
+        }
+        return null;
+    }
+
+    public void removeOrderItem(Bestellposten orderItem) {
+        if (orderItem != null)
+            this.orderItems.remove(orderItem);
     }
 
 }
