@@ -72,10 +72,4 @@ public class Adresse {
         this.houseNumber = houseNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Adresse [id=" + id + ", zip=" + zip + ", city=" + city + ", street=" + street + ", houseNumber="
-                + houseNumber + "]";
-    }
-
 }

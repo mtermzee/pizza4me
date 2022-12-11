@@ -1,12 +1,17 @@
 package swa.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.inject.Vetoed;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -25,8 +30,11 @@ public class Kunde {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Adresse address;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Bestellung> orders;
 
     public Kunde() {
+        this.orders = new ArrayList<Bestellung>();
     }
 
     public Kunde(String firstname, String lastname, Adresse address) {
@@ -67,9 +75,12 @@ public class Kunde {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Kunde [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + "]";
+    public List<Bestellung> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Bestellung> orders) {
+        this.orders = orders;
     }
 
 }
