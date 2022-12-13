@@ -15,6 +15,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 import swa.control.KundenService;
 import swa.entity.Adresse;
 
@@ -38,47 +40,55 @@ public class KundenResource {
     }
 
     @GET
+    @Operation(summary = "Get all customers")
     public Response getCustomers() {
         return Response.ok(kundenService.getCustomers()).build();
     }
 
     @GET
     @Path("{id}")
+    @Operation(summary = "Get a customer by id")
     public Response getCustomer(@PathParam("id") int id) {
         return Response.ok(kundenService.getCustomer(id)).build();
     }
 
     @POST
+    @Operation(summary = "Add a customer")
     public Response addCustomer(@QueryParam("firstname") String firstname, @QueryParam("lastname") String lastname) {
         return Response.ok(kundenService.addCustomer(firstname, lastname)).build();
     }
 
     @DELETE
     @Path("{id}")
+    @Operation(summary = "Delete a customer")
     public Response deleteCustomer(@PathParam("id") int id) {
         return Response.ok(kundenService.deleteCustomer(id)).build();
     }
 
     @GET
     @Path("{id}/address")
+    @Operation(summary = "Get a customer's address by id")
     public Response getAddress(@PathParam("id") int id) {
         return Response.ok(kundenService.getAddress(id)).build();
     }
 
     @POST
     @Path("{id}/address")
+    @Operation(summary = "Add a customer's address")
     public Response addAddress(@PathParam("id") int id, Adresse address) {
         return Response.ok(kundenService.addAddress(id, address)).build();
     }
 
     @PUT
     @Path("{id}/address")
+    @Operation(summary = "Update a customer's address")
     public Response updateAddress(@PathParam("id") int id, Adresse address) {
         return Response.ok(kundenService.updateAddress(id, address)).build();
     }
 
     @DELETE
     @Path("{id}/address")
+    @Operation(summary = "Delete a customer's address")
     public Response deleteAddress(@PathParam("id") int id) {
         return Response.ok(kundenService.deleteAddress(id)).build();
     }

@@ -13,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+
 import swa.control.BestellungService;
 
 @Path("/order")
@@ -25,24 +27,35 @@ public class BestellungResource {
 
     @GET
     @Path("{customerId}")
+    @Operation(summary = "Get all orders of a customer")
     public Response showOrders(@PathParam("customerId") int customerId) {
         return Response.ok(bestellungService.showOrders(customerId)).build();
     }
 
     @POST
     @Path("{customerId}")
+    @Operation(summary = "Create a new")
     public Response createOrder(@PathParam("customerId") int customerId) {
         return Response.ok(bestellungService.createOrder(customerId)).build();
     }
 
     @POST
     @Path("{orderId}/{pizzaId}")
+    @Operation(summary = "Order a pizza")
     public Response orderPizza(@PathParam("orderId") int orderId, @PathParam("pizzaId") int pizzaId) {
         return Response.ok(bestellungService.orderPizza(orderId, pizzaId)).build();
     }
 
+    @POST
+    @Path("/complete/{orderId}")
+    @Operation(summary = "Complete an order")
+    public Response completeOrder(@PathParam("orderId") int orderId) {
+        return Response.ok(bestellungService.completeOrder(orderId)).build();
+    }
+
     @PUT
     @Path("{orderId}/{itemId}/{amount}")
+    @Operation(summary = "Update an order item")
     public Response updateOrder(@PathParam("orderId") int orderId, @PathParam("itemId") int itemId,
             @PathParam("amount") int amount) {
         return Response.ok(bestellungService.updateOrder(orderId, itemId, amount)).build();
@@ -50,6 +63,7 @@ public class BestellungResource {
 
     @DELETE
     @Path("{orderId}/{itemId}/")
+    @Operation(summary = "Delete an order item")
     public Response deleteOrderItem(@PathParam("orderId") int orderId, @PathParam("itemId") int itemId) {
         return Response.ok(bestellungService.deleteOrderItem(orderId, itemId)).build();
     }

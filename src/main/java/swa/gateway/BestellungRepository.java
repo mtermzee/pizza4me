@@ -91,4 +91,16 @@ public class BestellungRepository implements BestellungService {
         return null;
     }
 
+    @Override
+    public Bestellung completeOrder(int orderId) {
+        Bestellung order = em.find(Bestellung.class, orderId);
+        if (order != null) {
+            order.setOrdered(true);
+            em.merge(order);
+            return order;
+        } else {
+            return null;
+        }
+    }
+
 }

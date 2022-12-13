@@ -1,5 +1,6 @@
 package swa.entity;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Vetoed;
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "Pizza")
 @Vetoed
 @Cacheable
+@Dependent
 public class Pizza {
     @Id
     @SequenceGenerator(name = "pizzaSeq", sequenceName = "pizza_id_seq", allocationSize = 1, initialValue = 1)

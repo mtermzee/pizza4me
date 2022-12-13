@@ -1,5 +1,6 @@
 package swa.entity;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Vetoed;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "OrderItem")
 @Vetoed
 @Cacheable
+@Dependent
 public class Bestellposten {
     @Id
     @SequenceGenerator(name = "orderItemSeq", sequenceName = "orderItem_id_seq", allocationSize = 1, initialValue = 1)

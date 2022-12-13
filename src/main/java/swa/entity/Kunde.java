@@ -3,6 +3,7 @@ package swa.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Vetoed;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 @Table(name = "Customer")
 @Vetoed
 @Cacheable
+@Dependent
 public class Kunde {
     @Id
     @SequenceGenerator(name = "customerSeq", sequenceName = "customer_id_seq", allocationSize = 1, initialValue = 1)
