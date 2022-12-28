@@ -36,11 +36,75 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 ">
-             
+                {#for pizza in pizzas}
+                
+                    <div class="row">
+                        <div class="col-sm-6 pt-3 ">
+                            <div class="card bg-light h-100">
+                                <div class="card-body h-50">
+                                    <h5 class="card-title h-25">{pizza.name}</h5>
+                                    <p class="card-text h-25 text-secondary">{pizza.description}</p>
+                                    <div class="row h-25">
+                                        <div class="col-sm-4">
+                                            <p class="card-text">{pizza.price}€</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <form action="http://localhost:8080/index/kunde" method="GET" id="form_{pizza.id}">
+                                                <input type="number" name="menge" required>
+                                                <input type="hidden" value="{pizza.id}" name="pizza">
+                                            </form>
 
-             </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="submit" value="Add" form="form_{pizza.id}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#if pizza_count.mod(2) == 1}
+                    {/if}
+                {/for}
+            </div>
+            
+            <div class="col-sm-4 pt-3">
+                <div class="card ">
+                    <div class="card-header bg-dark text-center text-light">shopping cart</div>
+                    <div class="card-body bg-light">
+                        {#for item in items.orEmpty}
+                        <div class="row">
+                            <div class="col-sm-8">{item.amount} x {item.pizza.name}</div>
+                            <div class="col-sm-4">{item.totalPrice()}€</div>
+                        </div>
+                        {/for}
+                    </div>
+                
+                    <div class="card-footer bg-light">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                Total Price:
+                            </div>
+                            <div class="col-sm-3">
+                                {totalPrice}€
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9"></div>
+                            <div class="col-sm-3 pt-3">
+                                <form>
+
+                                    <input type="submit" formaction="http://localhost:8080/" formmethod="GET"
+                                        class="btn btn-success" value="Bestellen">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>  
+    </div> 
     
 
 </body>

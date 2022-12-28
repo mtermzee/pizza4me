@@ -106,4 +106,14 @@ public class BestellungRepository implements BestellungService {
         }
     }
 
+    @Override
+    public List<Bestellposten> showitem(int orderId) {
+        Bestellung order = em.find(Bestellung.class, orderId);
+        if (order != null) {
+            return order.getOrderItems();
+        } else {
+            return null;
+        }
+    }
+
 }

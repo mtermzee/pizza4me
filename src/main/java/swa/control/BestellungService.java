@@ -17,4 +17,6 @@ public interface BestellungService {
     public Bestellposten deleteOrderItem(int orderId, int itemId);
 
     public Bestellung completeOrder(int orderId);
+
+    public List<Bestellposten> showitem(int orderId);
 }

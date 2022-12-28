@@ -33,9 +33,32 @@
 
 <body>
 
-    <div class="container">
+    <div class="container mx-auto my-5">
         <div class="row">
-            <div class="col-sm-8 ">
+            <div class="col-sm-8">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Address</th>    
+                        <th scope="col">Orders</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {#for customer in customers} 
+                            <tr>
+                                <th scope="row">{customer.id}</th>
+                                <td>{customer.firstname ?: 'Unknown'}</td>
+                                <td>{customer.lastname ?: 'Unknown'}</td>
+                                <td>{customer.address ?: 'Unknown'}</td>
+                                <td style="width: 500px;">{customer.orders ?: 'Unknown'}</td>
+                            </tr>
+                        {/for}
+                    </tbody>
+                  </table>
+                </div>
             </div>
         </div>
     </div>

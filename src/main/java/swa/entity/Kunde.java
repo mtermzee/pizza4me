@@ -86,4 +86,10 @@ public class Kunde {
             this.orders.add(order);
     }
 
+    @Override
+    public String toString() {
+        return "[firstname=" + firstname + ", lastname=" + lastname + ", address=" + address
+                + ", orders=" + orders + "]";
+    }
+
 }
