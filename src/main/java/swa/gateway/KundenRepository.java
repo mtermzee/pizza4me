@@ -4,15 +4,18 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import swa.control.KundenService;
 import swa.entity.Adresse;
 import swa.entity.Kunde;
 
 @ApplicationScoped
-@Transactional
+@Transactional(value = TxType.REQUIRED)
+@Named("KundenRepos")
 public class KundenRepository implements KundenService {
     @Inject
     EntityManager em;

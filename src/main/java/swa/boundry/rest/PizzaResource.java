@@ -1,7 +1,9 @@
-package swa.boundry;
+package swa.boundry.rest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +22,7 @@ import swa.entity.Pizza;
 @Path("/pizza")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Transactional(value = TxType.REQUIRES_NEW)
 @RequestScoped
 public class PizzaResource {
     @Inject

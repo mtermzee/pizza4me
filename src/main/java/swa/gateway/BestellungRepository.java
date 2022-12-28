@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import swa.control.BestellungService;
 import swa.entity.Bestellposten;
@@ -14,7 +16,8 @@ import swa.entity.Kunde;
 import swa.entity.Pizza;
 
 @ApplicationScoped
-@Transactional
+@Transactional(value = TxType.REQUIRED)
+@Named("BestellungRepos")
 public class BestellungRepository implements BestellungService {
     @Inject
     EntityManager em;
