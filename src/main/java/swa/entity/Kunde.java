@@ -43,6 +43,7 @@ public class Kunde {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
+        this.orders = new ArrayList<Bestellung>();
     }
 
     public int getId() {
@@ -84,6 +85,12 @@ public class Kunde {
     public void addOrder(Bestellung order) {
         if (order != null)
             this.orders.add(order);
+    }
+
+    @Override
+    public String toString() {
+        return "[firstname=" + firstname + ", lastname=" + lastname + ", address=" + address
+                + ", orders=" + orders + "]";
     }
 
 }

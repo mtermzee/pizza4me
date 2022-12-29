@@ -2,19 +2,43 @@ package swa.control;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import swa.entity.Bestellposten;
 import swa.entity.Bestellung;
 
-public interface BestellungService {
-    public List<Bestellung> showOrders(int customerId);
+@ApplicationScoped
+public class BestellungService {
 
-    public Bestellung createOrder(int customerId);
+    @Inject
+    BestellungManagement bManagement;
 
-    public Bestellposten orderPizza(int orderId, int pizzaId);
+    public List<Bestellung> showOrders(int customerId) {
+        return bManagement.showOrders(customerId);
+    }
 
-    public Bestellposten updateOrder(int orderId, int itemId, int amount);
+    public Bestellung createOrder(int customerId) {
+        return bManagement.createOrder(customerId);
+    }
 
-    public Bestellposten deleteOrderItem(int orderId, int itemId);
+    public Bestellposten orderPizza(int orderId, int pizzaId) {
+        return bManagement.orderPizza(orderId, pizzaId);
+    }
 
-    public Bestellung completeOrder(int orderId);
+    public Bestellposten updateOrder(int orderId, int itemId, int amount) {
+        return bManagement.updateOrder(orderId, itemId, amount);
+    }
+
+    public Bestellposten deleteOrderItem(int orderId, int itemId) {
+        return bManagement.deleteOrderItem(orderId, itemId);
+    }
+
+    public Bestellung completeOrder(int orderId) {
+        return bManagement.completeOrder(orderId);
+    }
+
+    public List<Bestellposten> showitem(int orderId) {
+        return bManagement.showitem(orderId);
+    }
 }

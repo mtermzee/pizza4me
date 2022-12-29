@@ -57,4 +57,14 @@ public class Bestellposten {
         this.amount = amount;
     }
 
+    public double totalPrice() {
+        double preis = (pizza.getPrice() * this.amount);
+        return Math.round(preis * 100.0) / 100.0;
+    }
+
+    @Override
+    public String toString() {
+        return "Bestellposten [pizza=" + pizza + ", amount=" + amount + "]";
+    }
+
 }

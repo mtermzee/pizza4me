@@ -73,4 +73,9 @@ public class Bestellung {
             this.orderItems.remove(orderItem);
     }
 
+    @Override
+    public String toString() {
+        return "Bestellung [ordered=" + ordered + ", orderItems=" + orderItems + "]";
+    }
+
 }

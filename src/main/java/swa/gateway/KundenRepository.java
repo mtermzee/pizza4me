@@ -15,7 +15,6 @@ import swa.entity.Kunde;
 
 @ApplicationScoped
 @Transactional(value = TxType.REQUIRED)
-@Named("KundenRepos")
 public class KundenRepository implements KundenService {
     @Inject
     EntityManager em;
