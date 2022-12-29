@@ -2,7 +2,6 @@ package swa.boundry;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 import javax.ws.rs.Consumes;
@@ -19,7 +18,6 @@ import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import swa.control.BestellungService;
 import swa.control.KundenService;
-import swa.entity.Bestellung;
 import swa.entity.Kunde;
 
 @Path("/login")
@@ -65,11 +63,11 @@ public class AuthResource {
     @Transactional
     public Response addUser(@FormParam("firstname") String firstname, @FormParam("lastname") String lastname) {
         // UserLogin.add(username, passwort, "KundIn");
+        int currentCustomerID;
         Kunde customer = kundenService.addCustomer(firstname, lastname);
-        homeResource.currentCustomerID = customer.getId();
+        currentCustomerID = customer.getId();
 
-        Bestellung order = bestellungService.createOrder(homeResource.currentCustomerID);
-        homeResource.currentOrderID = order.getId();
+        bestellungService.createOrder(currentCustomerID);
 
         return Response.seeOther(UriBuilder.fromPath("/home/customer").build()).build();
     }

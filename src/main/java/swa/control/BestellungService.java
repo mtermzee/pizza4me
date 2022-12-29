@@ -10,6 +10,7 @@ import swa.entity.Bestellung;
 
 @ApplicationScoped
 public class BestellungService {
+    public int currentOrderID;
 
     @Inject
     BestellungManagement bManagement;
@@ -19,7 +20,9 @@ public class BestellungService {
     }
 
     public Bestellung createOrder(int customerId) {
-        return bManagement.createOrder(customerId);
+        Bestellung order = bManagement.createOrder(customerId);
+        currentOrderID = order.getId();
+        return order;
     }
 
     public Bestellposten orderPizza(int orderId, int pizzaId) {

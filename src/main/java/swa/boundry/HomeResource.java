@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 import javax.ws.rs.GET;
@@ -29,8 +28,6 @@ import io.quarkus.qute.CheckedTemplate;
 @Transactional(value = TxType.REQUIRES_NEW)
 @RequestScoped
 public class HomeResource {
-    public int currentCustomerID;
-    public int currentOrderID;
 
     @CheckedTemplate(requireTypeSafeExpressions = false)
     public static class Templates {
@@ -69,24 +66,25 @@ public class HomeResource {
 
     @GET
     public Response getItems() {
-        Kunde customer = new Kunde();
         List<Pizza> pizzas = new ArrayList<>();
         List<Bestellposten> items = new ArrayList<>();
         double totalPrice = 0;
         DecimalFormat f = new DecimalFormat("#0.00");
 
-        customer = kundenService.getCustomer(currentCustomerID);
-        System.out.println("Customer: " + currentCustomerID);
+        // Kunde customer = new Kunde();
+        // customer = kundenService.getCustomer(currentCustomerID);
+        // System.out.println("Customer: " + currentCustomerID);
+        // .data("customer", customer)
 
         pizzas = pizzaService.getAllPizza();
-        items = bestellungService.showitem(currentOrderID);
+        items = bestellungService.showitem(bestellungService.currentOrderID);
 
         if (items != null)
             for (Bestellposten item : items) {
                 totalPrice += item.totalPrice();
             }
 
-        return Response.ok(Templates.index().data("customer", customer).data("pizzas", pizzas).data("items", items)
+        return Response.ok(Templates.index().data("pizzas", pizzas).data("items", items)
                 .data("totalPrice",
                         f.format(totalPrice)))
                 .build();
