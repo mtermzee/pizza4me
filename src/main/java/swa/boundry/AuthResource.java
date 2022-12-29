@@ -16,8 +16,8 @@ import javax.ws.rs.core.UriBuilder;
 
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
-import swa.control.BestellungService;
-import swa.control.KundenService;
+import swa.control.bestellung.BestellungService;
+import swa.control.kunde.KundeService;
 import swa.entity.Kunde;
 
 @Path("/login")
@@ -37,7 +37,7 @@ public class AuthResource {
     HomeResource homeResource;
 
     @Inject
-    KundenService kundenService;
+    KundeService kundenService;
 
     @Inject
     BestellungService bestellungService;
@@ -68,8 +68,6 @@ public class AuthResource {
         currentCustomerID = customer.getId();
 
         bestellungService.createOrder(currentCustomerID);
-
-        System.out.println("1: " + bestellungService);
 
         return Response.seeOther(UriBuilder.fromPath("/home/customer").build()).build();
     }

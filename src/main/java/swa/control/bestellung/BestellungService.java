@@ -1,4 +1,4 @@
-package swa.control;
+package swa.control.bestellung;
 
 import java.util.List;
 

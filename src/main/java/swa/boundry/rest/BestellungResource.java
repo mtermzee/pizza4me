@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
-import swa.control.BestellungService;
+import swa.control.bestellung.BestellungService;
 
 @Path("/order")
 @Produces(MediaType.APPLICATION_JSON)

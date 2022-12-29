@@ -15,9 +15,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import io.quarkus.qute.TemplateInstance;
-import swa.control.BestellungService;
-import swa.control.KundenService;
 import swa.control.PizzaService;
+import swa.control.bestellung.BestellungService;
+import swa.control.kunde.KundeService;
 import swa.entity.Bestellposten;
 import swa.entity.Kunde;
 import swa.entity.Pizza;
@@ -40,7 +40,7 @@ public class HomeResource {
     BestellungService bestellungService;
 
     @Inject
-    KundenService kundenService;
+    KundeService kundenService;
 
     @Inject
     PizzaService pizzaService;
@@ -75,9 +75,6 @@ public class HomeResource {
 
         pizzas = pizzaService.getAllPizza();
         items = bestellungService.showitem();
-
-        System.out.println("OrderID: " + bestellungService.currentOrderID);
-        System.out.println("2: " + bestellungService);
 
         if (items != null)
             for (Bestellposten item : items) {

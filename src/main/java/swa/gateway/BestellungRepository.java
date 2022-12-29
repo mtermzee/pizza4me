@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
-import swa.control.BestellungManagement;
+import swa.control.bestellung.BestellungManagement;
 import swa.entity.Bestellposten;
 import swa.entity.Bestellung;
 import swa.entity.Kunde;

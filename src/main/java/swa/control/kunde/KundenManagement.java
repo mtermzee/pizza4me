@@ -1,11 +1,11 @@
-package swa.control;
+package swa.control.kunde;
 
 import java.util.List;
 
 import swa.entity.Adresse;
 import swa.entity.Kunde;
 
-public interface KundenService {
+public interface KundenManagement {
     // Customer
     public Kunde getCustomer(int customerId);
 
