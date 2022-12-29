@@ -37,9 +37,6 @@ public class HomeResource {
     }
 
     @Inject
-    AuthResource auth;
-
-    @Inject
     BestellungService bestellungService;
 
     @Inject
@@ -77,7 +74,10 @@ public class HomeResource {
         // .data("customer", customer)
 
         pizzas = pizzaService.getAllPizza();
-        items = bestellungService.showitem(bestellungService.currentOrderID);
+        items = bestellungService.showitem();
+
+        System.out.println("OrderID: " + bestellungService.currentOrderID);
+        System.out.println("2: " + bestellungService);
 
         if (items != null)
             for (Bestellposten item : items) {

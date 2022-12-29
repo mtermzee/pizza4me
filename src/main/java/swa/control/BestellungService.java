@@ -2,13 +2,13 @@ package swa.control;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import swa.entity.Bestellposten;
 import swa.entity.Bestellung;
 
-@ApplicationScoped
+@Singleton
 public class BestellungService {
     public int currentOrderID;
 
@@ -41,7 +41,7 @@ public class BestellungService {
         return bManagement.completeOrder(orderId);
     }
 
-    public List<Bestellposten> showitem(int orderId) {
-        return bManagement.showitem(orderId);
+    public List<Bestellposten> showitem() {
+        return bManagement.showitem(currentOrderID);
     }
 }
