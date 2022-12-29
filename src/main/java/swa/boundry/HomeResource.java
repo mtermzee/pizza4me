@@ -68,11 +68,7 @@ public class HomeResource {
         double totalPrice = 0;
         DecimalFormat f = new DecimalFormat("#0.00");
 
-        // Kunde customer = new Kunde();
-        // customer = kundenService.getCustomer(currentCustomerID);
-        // System.out.println("Customer: " + currentCustomerID);
-        // .data("customer", customer)
-
+        Kunde customer = kundenService.getCustomer();
         pizzas = pizzaService.getAllPizza();
         items = bestellungService.showitem();
 
@@ -81,7 +77,7 @@ public class HomeResource {
                 totalPrice += item.totalPrice();
             }
 
-        return Response.ok(Templates.index().data("pizzas", pizzas).data("items", items)
+        return Response.ok(Templates.index().data("customer", customer).data("pizzas", pizzas).data("items", items)
                 .data("totalPrice",
                         f.format(totalPrice)))
                 .build();
