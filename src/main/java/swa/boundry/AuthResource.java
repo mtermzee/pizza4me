@@ -69,6 +69,6 @@ public class AuthResource {
 
         bestellungService.createOrder(currentCustomerID);
 
-        return Response.seeOther(UriBuilder.fromPath("/home/customer").build()).build();
+        return Response.seeOther(UriBuilder.fromPath("/home").build()).build();
     }
 }
