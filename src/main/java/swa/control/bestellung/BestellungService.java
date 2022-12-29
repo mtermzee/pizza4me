@@ -41,7 +41,24 @@ public class BestellungService {
         return bManagement.completeOrder(orderId);
     }
 
+    // for html index
+    public List<Bestellung> showOrders() {
+        return bManagement.showOrders(currentOrderID);
+    }
+
     public List<Bestellposten> showitem() {
         return bManagement.showitem(currentOrderID);
+    }
+
+    public Bestellposten orderPizza(int pizzaId) {
+        return bManagement.orderPizza(currentOrderID, pizzaId);
+    }
+
+    public Bestellposten updateOrder(int amount) {
+        return bManagement.updateOrder(currentOrderID, 1, amount);
+    }
+
+    public Bestellung completeOrder() {
+        return bManagement.completeOrder(currentOrderID);
     }
 }

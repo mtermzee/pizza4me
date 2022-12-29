@@ -52,14 +52,14 @@
                                             <p class="card-text">{pizza.price}€</p>
                                         </div>
                                         <div class="col-sm-6">
-                                            <form action="http://localhost:8080/index/kunde" method="GET" id="form_{pizza.id}">
-                                                <input type="number" name="menge" required>
-                                                <input type="hidden" value="{pizza.id}" name="pizza">
+                                            <form form="addPizza" action="" autocomplete="off">
+                                                <input class="form-control" name="pizzaId" placeholder="pizzaId"
+                                                    id="pizzaId" required type="hidden" value="{pizza.id}">
+                                                <div class="col-sm-2">
+                                                    <button type="submit" formaction="./home/home/send" formmethod="post"
+                                                        class="btn btn-info">Add</button>
+                                                </div>
                                             </form>
-
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="submit" value="Add" form="form_{pizza.id}">
                                         </div>
                                     </div>
                                 </div>
@@ -93,11 +93,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-9"></div>
+                            {#for order in orders.orEmpty}
+                                <div class="col-sm-9">ordered: {order.ordered}</div>
+                            {/for}
                             <div class="col-sm-3 pt-3">
                                 <form>
-
-                                    <input type="submit" formaction="http://localhost:8080/" formmethod="GET"
+                                    <input type="submit" formaction="./home/home/complete" formmethod="POST"
                                         class="btn btn-success" value="Bestellen">
                                 </form>
                             </div>
