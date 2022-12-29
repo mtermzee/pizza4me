@@ -40,6 +40,9 @@ public class HomeResource {
     }
 
     @Inject
+    AuthResource auth;
+
+    @Inject
     @Named("BestellungRepos")
     BestellungService bestellungService;
 
@@ -71,14 +74,16 @@ public class HomeResource {
     public Response getItems() {
         List<Pizza> pizzas = new ArrayList<>();
         List<Bestellposten> items = new ArrayList<>();
+        double totalPrice = 0;
         DecimalFormat f = new DecimalFormat("#0.00");
 
         pizzas = pizzaService.getAllPizza();
-        items = bestellungService.showitem(1);
-        double totalPrice = 0;
-        for (Bestellposten item : items) {
-            totalPrice += item.totalPrice();
-        }
+        items = bestellungService.showitem(auth.currentOrderID);
+
+        if (items != null)
+            for (Bestellposten item : items) {
+                totalPrice += item.totalPrice();
+            }
 
         return Response.ok(Templates.index().data("pizzas", pizzas).data("items", items).data("totalPrice",
                 f.format(totalPrice))).build();
