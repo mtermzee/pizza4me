@@ -43,6 +43,7 @@ public class Kunde {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
+        this.orders = new ArrayList<Bestellung>();
     }
 
     public int getId() {
