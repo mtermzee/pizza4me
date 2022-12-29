@@ -14,7 +14,6 @@ import swa.entity.Pizza;
 
 @ApplicationScoped
 @Transactional(value = TxType.REQUIRED)
-@Named("PizzaRepos")
 public class PizzaRepository implements PizzaService {
     @Inject
     EntityManager em;

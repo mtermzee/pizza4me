@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
-import swa.control.BestellungService;
+import swa.control.BestellungManagement;
 import swa.entity.Bestellposten;
 import swa.entity.Bestellung;
 import swa.entity.Kunde;
@@ -17,8 +17,7 @@ import swa.entity.Pizza;
 
 @ApplicationScoped
 @Transactional(value = TxType.REQUIRED)
-@Named("BestellungRepos")
-public class BestellungRepository implements BestellungService {
+public class BestellungRepository implements BestellungManagement {
     @Inject
     EntityManager em;
 

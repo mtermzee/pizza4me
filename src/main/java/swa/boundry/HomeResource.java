@@ -29,6 +29,8 @@ import io.quarkus.qute.CheckedTemplate;
 @Transactional(value = TxType.REQUIRES_NEW)
 @RequestScoped
 public class HomeResource {
+    public int currentCustomerID;
+    public int currentOrderID;
 
     @CheckedTemplate(requireTypeSafeExpressions = false)
     public static class Templates {
@@ -41,15 +43,12 @@ public class HomeResource {
     AuthResource auth;
 
     @Inject
-    @Named("BestellungRepos")
     BestellungService bestellungService;
 
     @Inject
-    @Named("KundenRepos")
     KundenService kundenService;
 
     @Inject
-    @Named("PizzaRepos")
     PizzaService pizzaService;
 
     /*
@@ -70,21 +69,27 @@ public class HomeResource {
 
     @GET
     public Response getItems() {
+        Kunde customer = new Kunde();
         List<Pizza> pizzas = new ArrayList<>();
         List<Bestellposten> items = new ArrayList<>();
         double totalPrice = 0;
         DecimalFormat f = new DecimalFormat("#0.00");
 
+        customer = kundenService.getCustomer(currentCustomerID);
+        System.out.println("Customer: " + currentCustomerID);
+
         pizzas = pizzaService.getAllPizza();
-        items = bestellungService.showitem(auth.currentOrderID);
+        items = bestellungService.showitem(currentOrderID);
 
         if (items != null)
             for (Bestellposten item : items) {
                 totalPrice += item.totalPrice();
             }
 
-        return Response.ok(Templates.index().data("pizzas", pizzas).data("items", items).data("totalPrice",
-                f.format(totalPrice))).build();
+        return Response.ok(Templates.index().data("customer", customer).data("pizzas", pizzas).data("items", items)
+                .data("totalPrice",
+                        f.format(totalPrice)))
+                .build();
     }
 
     @GET

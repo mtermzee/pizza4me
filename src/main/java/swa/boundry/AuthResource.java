@@ -27,8 +27,6 @@ import swa.entity.Kunde;
 @Transactional(value = TxType.REQUIRES_NEW)
 @RequestScoped
 public class AuthResource {
-    public int currentCustomerID;
-    public int currentOrderID;
 
     @CheckedTemplate(requireTypeSafeExpressions = false)
     public static class Templates {
@@ -38,11 +36,12 @@ public class AuthResource {
     }
 
     @Inject
-    @Named("KundenRepos")
+    HomeResource homeResource;
+
+    @Inject
     KundenService kundenService;
 
     @Inject
-    @Named("BestellungRepos")
     BestellungService bestellungService;
 
     @GET
@@ -67,10 +66,10 @@ public class AuthResource {
     public Response addUser(@FormParam("firstname") String firstname, @FormParam("lastname") String lastname) {
         // UserLogin.add(username, passwort, "KundIn");
         Kunde customer = kundenService.addCustomer(firstname, lastname);
-        currentCustomerID = customer.getId();
+        homeResource.currentCustomerID = customer.getId();
 
-        Bestellung order = bestellungService.createOrder(currentCustomerID);
-        currentOrderID = order.getId();
+        Bestellung order = bestellungService.createOrder(homeResource.currentCustomerID);
+        homeResource.currentOrderID = order.getId();
 
         return Response.seeOther(UriBuilder.fromPath("/home/customer").build()).build();
     }
