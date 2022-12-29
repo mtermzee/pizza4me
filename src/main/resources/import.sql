@@ -1,16 +1,16 @@
 INSERT INTO
     DATA.Pizza(id, name, description, price)
 VALUES (
-        1000,
+        1,
         'Margherita',
         'San Marzano Tomaten Sauce, Mozzarella di bufala, Oliven Öl',
-        9.90
+        9.40
     );
 
 INSERT INTO
     DATA.Pizza(id, name, description, price)
 VALUES (
-        1001,
+        2,
         'Marinara',
         'Marinara Sauce, Knoblauch, Olivenöl, Basilikum, Oregano',
         9.90
@@ -19,35 +19,35 @@ VALUES (
 INSERT INTO
     DATA.Pizza(id, name, description, price)
 VALUES (
-        1002,
+        3,
         'Prosciutto e funghi',
-        'Tomatensauce, Mozzarella, Prosciutto (italienischer Schinken),Pilze',
-        9.90
+        'Tomatensauce, Mozzarella, Prosciutto, Pilze',
+        9.30
     );
 
 INSERT INTO
     DATA.Pizza(id, name, description, price)
 VALUES (
-        1003,
+        4,
         'Al Salmone',
         'Tomatensauce, Mozzarella, Lachs, Knoblauch',
-        9.90
+        9.40
     );
 
 INSERT INTO
     DATA.Pizza(id, name, description, price)
 VALUES (
-        1004,
+        5,
         'Mozzarella',
         'Tomatensauce, Büffelmozzarella',
-        9.90
+        9.70
     );
 
 INSERT INTO
     DATA.Pizza(id, name, description, price)
 VALUES (
-        1005,
+        6,
         'Carbonara',
         'Pecorino Romano Käse, Sahne, Frühlingszwiebeln, Eier, schwarzer Pfeffer',
-        9.90
+        9.10
     );
