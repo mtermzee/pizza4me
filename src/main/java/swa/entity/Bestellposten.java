@@ -12,7 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "OrderItem")
+@Table(name = "OrderItem", schema = "DATA")
 @Vetoed
 @Cacheable
 @Dependent
