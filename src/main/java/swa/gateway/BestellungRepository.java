@@ -35,13 +35,10 @@ public class BestellungRepository implements BestellungService {
     @Override
     public Bestellung createOrder(int customerId) {
         Kunde customer = em.find(Kunde.class, customerId);
-        System.out.println("Customer1: " + customer);
         if (customer != null) {
-            System.out.println("Customer2: " + customer);
             Bestellung order = new Bestellung();
             customer.addOrder(order);
             em.persist(order);
-            System.out.println("Customer3: " + customer);
             return order;
         } else {
             return null;
