@@ -20,13 +20,11 @@ import swa.control.BestellungService;
 import swa.control.KundenService;
 import swa.control.PizzaService;
 import swa.entity.Bestellposten;
-import swa.entity.Bestellung;
 import swa.entity.Kunde;
 import swa.entity.Pizza;
 import io.quarkus.qute.CheckedTemplate;
-import io.quarkus.qute.Template;
 
-@Path("home")
+@Path("/home")
 @Produces(MediaType.TEXT_HTML)
 @Transactional(value = TxType.REQUIRES_NEW)
 @RequestScoped
@@ -90,7 +88,7 @@ public class HomeResource {
     }
 
     @GET
-    @Path("customer")
+    @Path("/customer")
     public Response getCustomer() {
         List<Kunde> customers = new ArrayList<>();
         customers = kundenService.getCustomers();
