@@ -2,6 +2,7 @@ package swa.boundry.rest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.annotation.PostConstruct;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
@@ -44,6 +45,7 @@ public class KundenResource {
 
     @GET
     @Operation(summary = "Get all customers")
+    @RolesAllowed("customer")
     public Response getCustomers() {
         return Response.ok(kundenService.getCustomers()).build();
     }
@@ -51,6 +53,7 @@ public class KundenResource {
     @GET
     @Path("{id}")
     @Operation(summary = "Get a customer by id")
+    @RolesAllowed("admin")
     public Response getCustomer(@PathParam("id") int id) {
         return Response.ok(kundenService.getCustomer(id)).build();
     }
