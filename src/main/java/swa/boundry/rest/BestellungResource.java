@@ -1,5 +1,6 @@
 package swa.boundry.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -31,6 +32,7 @@ public class BestellungResource {
     @GET
     @Path("{customerId}")
     @Operation(summary = "Get all orders of a customer")
+    @RolesAllowed("user")
     public Response showOrders(@PathParam("customerId") int customerId) {
         return Response.ok(bestellungService.showOrders(customerId)).build();
     }
@@ -38,6 +40,7 @@ public class BestellungResource {
     @POST
     @Path("{customerId}")
     @Operation(summary = "Create a new")
+    @RolesAllowed("user")
     public Response createOrder(@PathParam("customerId") int customerId) {
         return Response.ok(bestellungService.createOrder(customerId)).build();
     }
@@ -45,6 +48,7 @@ public class BestellungResource {
     @POST
     @Path("{orderId}/{pizzaId}")
     @Operation(summary = "Order a pizza")
+    @RolesAllowed("user")
     public Response orderPizza(@PathParam("orderId") int orderId, @PathParam("pizzaId") int pizzaId) {
         return Response.ok(bestellungService.orderPizza(orderId, pizzaId)).build();
     }
@@ -52,6 +56,7 @@ public class BestellungResource {
     @POST
     @Path("/complete/{orderId}")
     @Operation(summary = "Complete an order")
+    @RolesAllowed("user")
     public Response completeOrder(@PathParam("orderId") int orderId) {
         return Response.ok(bestellungService.completeOrder(orderId)).build();
     }
@@ -59,6 +64,7 @@ public class BestellungResource {
     @PUT
     @Path("{orderId}/{itemId}/{amount}")
     @Operation(summary = "Update an order item")
+    @RolesAllowed("user")
     public Response updateOrder(@PathParam("orderId") int orderId, @PathParam("itemId") int itemId,
             @PathParam("amount") int amount) {
         return Response.ok(bestellungService.updateOrder(orderId, itemId, amount)).build();
@@ -67,6 +73,7 @@ public class BestellungResource {
     @DELETE
     @Path("{orderId}/{itemId}/")
     @Operation(summary = "Delete an order item")
+    @RolesAllowed("user")
     public Response deleteOrderItem(@PathParam("orderId") int orderId, @PathParam("itemId") int itemId) {
         return Response.ok(bestellungService.deleteOrderItem(orderId, itemId)).build();
     }

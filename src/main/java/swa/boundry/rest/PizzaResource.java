@@ -1,5 +1,6 @@
 package swa.boundry.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -30,6 +31,7 @@ public class PizzaResource {
 
     @GET
     @Operation(summary = "Get all pizzas")
+    @RolesAllowed("user")
     public Response getAllPizza() {
         return Response.ok(pizzaService.getAllPizza()).build();
     }
@@ -37,12 +39,14 @@ public class PizzaResource {
     @GET
     @Path("{id}")
     @Operation(summary = "Get a pizza by id")
+    @RolesAllowed("user")
     public Response getPizza(@PathParam("id") int id) {
         return Response.ok(pizzaService.getPizza(id)).build();
     }
 
     @POST
     @Operation(summary = "Add a pizza")
+    @RolesAllowed("user")
     public Response addPizza(Pizza pizza) {
         return Response.ok(pizzaService.addPizza(pizza)).build();
     }
@@ -50,6 +54,7 @@ public class PizzaResource {
     @DELETE
     @Path("{id}")
     @Operation(summary = "Delete a pizza")
+    @RolesAllowed("user")
     public Response deletePizza(@PathParam("id") int id) {
         return Response.ok(pizzaService.deletePizza(id)).build();
     }

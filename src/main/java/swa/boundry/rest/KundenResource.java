@@ -45,7 +45,7 @@ public class KundenResource {
 
     @GET
     @Operation(summary = "Get all customers")
-    @RolesAllowed("customer")
+    @RolesAllowed("user")
     public Response getCustomers() {
         return Response.ok(kundenService.getCustomers()).build();
     }
@@ -53,13 +53,14 @@ public class KundenResource {
     @GET
     @Path("{id}")
     @Operation(summary = "Get a customer by id")
-    @RolesAllowed("admin")
+    @RolesAllowed("user")
     public Response getCustomer(@PathParam("id") int id) {
         return Response.ok(kundenService.getCustomer(id)).build();
     }
 
     @POST
     @Operation(summary = "Add a customer")
+    @RolesAllowed("user")
     public Response addCustomer(@QueryParam("firstname") String firstname, @QueryParam("lastname") String lastname) {
         return Response.ok(kundenService.addCustomer(firstname, lastname)).build();
     }
@@ -67,6 +68,7 @@ public class KundenResource {
     @DELETE
     @Path("{id}")
     @Operation(summary = "Delete a customer")
+    @RolesAllowed("user")
     public Response deleteCustomer(@PathParam("id") int id) {
         return Response.ok(kundenService.deleteCustomer(id)).build();
     }
@@ -74,6 +76,7 @@ public class KundenResource {
     @GET
     @Path("{id}/address")
     @Operation(summary = "Get a customer's address by id")
+    @RolesAllowed("user")
     public Response getAddress(@PathParam("id") int id) {
         return Response.ok(kundenService.getAddress(id)).build();
     }
@@ -81,6 +84,7 @@ public class KundenResource {
     @POST
     @Path("{id}/address")
     @Operation(summary = "Add a customer's address")
+    @RolesAllowed("user")
     public Response addAddress(@PathParam("id") int id, Adresse address) {
         return Response.ok(kundenService.addAddress(id, address)).build();
     }
@@ -88,6 +92,7 @@ public class KundenResource {
     @PUT
     @Path("{id}/address")
     @Operation(summary = "Update a customer's address")
+    @RolesAllowed("user")
     public Response updateAddress(@PathParam("id") int id, Adresse address) {
         return Response.ok(kundenService.updateAddress(id, address)).build();
     }
@@ -95,6 +100,7 @@ public class KundenResource {
     @DELETE
     @Path("{id}/address")
     @Operation(summary = "Delete a customer's address")
+    @RolesAllowed("user")
     public Response deleteAddress(@PathParam("id") int id) {
         return Response.ok(kundenService.deleteAddress(id)).build();
     }
