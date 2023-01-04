@@ -1,9 +1,53 @@
--- This file allow to write SQL commands that will be emitted in test and dev.
+INSERT INTO
+    DATA.Pizza(id, name, description, price)
+VALUES (
+        1,
+        'Margherita',
+        'San Marzano Tomaten Sauce, Mozzarella di bufala, Oliven Öl',
+        9.40
+    );
 
--- The commands are commented as their support depends of the database
+INSERT INTO
+    DATA.Pizza(id, name, description, price)
+VALUES (
+        2,
+        'Marinara',
+        'Marinara Sauce, Knoblauch, Olivenöl, Basilikum, Oregano',
+        9.90
+    );
 
--- insert into myentity (id, field) values(nextval('hibernate_sequence'), 'field-1');
+INSERT INTO
+    DATA.Pizza(id, name, description, price)
+VALUES (
+        3,
+        'Prosciutto e funghi',
+        'Tomatensauce, Mozzarella, Prosciutto, Pilze',
+        9.30
+    );
 
--- insert into myentity (id, field) values(nextval('hibernate_sequence'), 'field-2');
+INSERT INTO
+    DATA.Pizza(id, name, description, price)
+VALUES (
+        4,
+        'Al Salmone',
+        'Tomatensauce, Mozzarella, Lachs, Knoblauch',
+        9.40
+    );
 
--- insert into myentity (id, field) values(nextval('hibernate_sequence'), 'field-3');
+INSERT INTO
+    DATA.Pizza(id, name, description, price)
+VALUES (
+        5,
+        'Mozzarella',
+        'Tomatensauce, Büffelmozzarella',
+        9.70
+    );
+
+INSERT INTO
+    DATA.Pizza(id, name, description, price)
+VALUES (
+        6,
+        'Carbonara',
+        'Pecorino Romano Käse, Sahne, Frühlingszwiebeln, Eier, schwarzer Pfeffer',
+        9.10
+    );

@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Address")
+@Table(name = "Address", schema = "DATA")
 @Vetoed
 @Cacheable
 @Dependent

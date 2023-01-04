@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PizzaOrder")
+@Table(name = "PizzaOrder", schema = "DATA")
 @Vetoed
 @Cacheable
 @Dependent

@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
-import swa.control.KundenService;
+import swa.control.kunde.KundeService;
 import swa.entity.Adresse;
 
 @Path("/kunden")
@@ -31,7 +31,7 @@ import swa.entity.Adresse;
 public class KundenResource {
 
     @Inject
-    KundenService kundenService;
+    KundeService kundenService;
 
     @PostConstruct
     public void init() {

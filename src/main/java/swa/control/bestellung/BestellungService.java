@@ -1,15 +1,16 @@
-package swa.control;
+package swa.control.bestellung;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import swa.entity.Bestellposten;
 import swa.entity.Bestellung;
 
-@ApplicationScoped
+@Singleton
 public class BestellungService {
+    public int currentOrderID;
 
     @Inject
     BestellungManagement bManagement;
@@ -19,7 +20,9 @@ public class BestellungService {
     }
 
     public Bestellung createOrder(int customerId) {
-        return bManagement.createOrder(customerId);
+        Bestellung order = bManagement.createOrder(customerId);
+        currentOrderID = order.getId();
+        return order;
     }
 
     public Bestellposten orderPizza(int orderId, int pizzaId) {
@@ -38,7 +41,24 @@ public class BestellungService {
         return bManagement.completeOrder(orderId);
     }
 
-    public List<Bestellposten> showitem(int orderId) {
-        return bManagement.showitem(orderId);
+    // for html index
+    public List<Bestellung> showOrders() {
+        return bManagement.showOrders(currentOrderID);
+    }
+
+    public List<Bestellposten> showitem() {
+        return bManagement.showitem(currentOrderID);
+    }
+
+    public Bestellposten orderPizza(int pizzaId) {
+        return bManagement.orderPizza(currentOrderID, pizzaId);
+    }
+
+    public Bestellposten updateOrder(int amount) {
+        return bManagement.updateOrder(currentOrderID, 1, amount);
+    }
+
+    public Bestellung completeOrder() {
+        return bManagement.completeOrder(currentOrderID);
     }
 }

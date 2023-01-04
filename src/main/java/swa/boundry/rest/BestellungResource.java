@@ -2,7 +2,6 @@ package swa.boundry.rest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 import javax.ws.rs.Consumes;
@@ -18,7 +17,7 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
-import swa.control.BestellungService;
+import swa.control.bestellung.BestellungService;
 
 @Path("/order")
 @Produces(MediaType.APPLICATION_JSON)
